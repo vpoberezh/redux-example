@@ -1,11 +1,10 @@
+import React from 'react';
 import { CustomPage } from '../pages';
 
-function App() {
-  return (
-    <div>
-    <CustomPage />
-    </div>
-  );
-}
-
-export default App;
+export const App: React.FC = () => {
+    return (
+        <div>
+            <CustomPage />
+        </div>
+    );
+};

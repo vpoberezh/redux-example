@@ -1,6 +1,6 @@
-export interface ReduxState{
-    counter:{
+export interface ReduxState {
+    counter: {
         value: number;
         status: string;
-    }
+    };
 }
