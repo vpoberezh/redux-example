@@ -4,3 +4,9 @@ export interface ReduxState {
         status: string;
     };
 }
+
+export interface CoinInfo {
+    code: string;
+    price: number;
+    amount: number;
+}
