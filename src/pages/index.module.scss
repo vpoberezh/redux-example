@@ -3,11 +3,11 @@
     flex-direction: column;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: row;
 
-    >*{
+    >* {
         flex:1;
     }
 }
