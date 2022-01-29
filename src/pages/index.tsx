@@ -1,5 +1,4 @@
 import React from 'react';
-import { ContentColumn } from './column';
 
 import s from './index.module.scss';
 import { CoinRow } from './coin-row';
