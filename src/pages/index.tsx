@@ -4,6 +4,7 @@ import numeral from 'numeral';
 import s from './index.module.scss';
 import { CoinRow } from './coin-row';
 import { CoinList } from '../consts';
+import { Layout } from '../components/layout';
 
 export const CustomPage: React.FC = () => {
     const [allSum, setAllSum] = useState<{ [key: string]: number }>({});
@@ -22,7 +23,7 @@ export const CustomPage: React.FC = () => {
     }, [allSum]);
 
     return (
-        <div className={s.root}>
+        <Layout title="Simple Wallet" total={total}>
             <div className={s.header}>
                 <div>Coin</div>
                 <div>$ Price</div>
@@ -35,6 +36,6 @@ export const CustomPage: React.FC = () => {
                 ))}
             </div>
             <div className={s.footer}>{`Total: ${numeral(total).format('0,0[.]00 $')}`}</div>
-        </div>
+        </Layout>
     );
 };
