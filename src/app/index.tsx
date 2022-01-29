@@ -1,10 +1,9 @@
-import './index.css';
-import { Counter } from '../redux/wallet/counter';
+import { CustomPage } from '../pages';
 
 function App() {
   return (
-    <div className="App">
-      <Counter />
+    <div>
+    <CustomPage />
     </div>
   );
 }
