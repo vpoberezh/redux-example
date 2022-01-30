@@ -1,34 +1,33 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import s from './index.module.scss';
 import classNames from 'classnames';
 import numeral from 'numeral';
+import { useDispatch } from 'react-redux';
+import { CoinActions } from '../../../redux/wallet/reducer';
 
 interface Props {
     code: string;
-    defaultPrice?: number;
-    defaultAmount?: number;
-    onChange: (code: string, sum: number) => void;
+    price: number;
+    amount: number;
 }
 
-export const CoinRow: React.FC<Props> = ({ code, defaultPrice = 0, defaultAmount = 1, onChange }) => {
-    const [price, setPrice] = useState<string>(defaultPrice.toString());
-    const [amount, setAmount] = useState<string>(defaultAmount.toString());
+export const CoinRow: React.FC<Props> = ({ code, price = 0, amount = 1 }) => {
+    const dispatch = useDispatch();
 
-    const handlePriceChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setPrice(e.currentTarget.value);
-    }, []);
+    const handlePriceChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(CoinActions.updateCoin({ code, price: parseFloat(e.currentTarget.value) }));
+        },
+        [code]
+    );
 
     const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.currentTarget.value);
+        dispatch(CoinActions.updateCoin({ code, amount: parseFloat(e.currentTarget.value) }));
     }, []);
 
     const sum = useMemo(() => {
-        return parseFloat(price) * parseInt(amount);
+        return price * amount;
     }, [price, amount]);
-
-    useEffect(() => {
-        onChange(code, sum);
-    }, [sum]);
 
     return (
         <div className={classNames(s.root)}>

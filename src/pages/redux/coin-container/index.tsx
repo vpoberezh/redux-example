@@ -1,32 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import s from './index.module.scss';
 import { CoinRow } from '../coin-row';
-import { CoinList } from '../../../consts';
 import numeral from 'numeral';
+import { ReduxState } from '../../../interfaces';
+import { useSelector } from 'react-redux';
 
-interface Props {
-    onTotalChange: (total: number) => void;
-}
-
-export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
-    const [allSum, setAllSum] = useState<{ [key: string]: number }>({});
-
-    const handleChange = useCallback(
-        (code: string, sum) => {
-            allSum[code] = sum;
-            setAllSum({ ...allSum });
-        },
-        [allSum]
-    );
-
-    const total = useMemo(() => {
-        const keys = Object.keys(allSum);
-        return keys.map((key) => allSum[key]).reduce((a, b) => a + b, 0);
-    }, [allSum]);
-
-    useEffect(() => {
-        onTotalChange(total);
-    }, [total]);
+export const CoinContainer: React.FC = () => {
+    const coins = useSelector((x: ReduxState) => x.wallet.coins);
+    const total = useSelector((x: ReduxState) => x.wallet.total);
 
     return (
         <div>
@@ -37,8 +18,8 @@ export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
                 <div>Evaluation</div>
             </div>
             <div className={s.content}>
-                {CoinList.map(({ code, price, amount }, i) => (
-                    <CoinRow key={i} code={code} defaultPrice={price} defaultAmount={amount} onChange={handleChange} />
+                {coins.map(({ code, price, amount }, i) => (
+                    <CoinRow key={i} code={code} price={price} amount={amount} />
                 ))}
             </div>
             <div className={s.footer}>{`Total: ${numeral(total).format('0,0[.]00 $')}`}</div>

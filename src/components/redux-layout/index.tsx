@@ -3,14 +3,17 @@ import s from './index.module.scss';
 import classNames from 'classnames';
 import numeral from 'numeral';
 import { Menu } from '../menu';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '../../interfaces';
 
 interface Props {
     title?: string;
     children: React.ReactNode;
-    total?: number;
 }
 
-export const ReduxLayout: React.FC<Props> = ({ children, title, total }) => {
+export const ReduxLayout: React.FC<Props> = ({ children, title }) => {
+    const total = useSelector((x: ReduxState) => x.wallet.total);
+
     return (
         <div className={classNames(s.root)}>
             <div className={s.header}>
