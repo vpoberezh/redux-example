@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import s from './index.module.scss';
-import numeral from 'numeral';
 import { CoinRow } from '../coin-row';
 import { CoinList } from '../../../consts';
+import numeral from 'numeral';
 
 interface Props {
     onTotalChange: (total: number) => void;
