@@ -1,7 +1,8 @@
 .root {
     display: flex;
     flex-direction: row;
-    &:hover{
+
+    &:hover {
         background-color: aliceblue;
     }
 }

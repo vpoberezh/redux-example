@@ -2,6 +2,7 @@ import React from 'react';
 import s from './index.module.scss';
 import classNames from 'classnames';
 import numeral from 'numeral';
+import { Menu } from '../menu';
 
 interface Props {
     title?: string;
@@ -13,14 +14,7 @@ export const ReduxLayout: React.FC<Props> = ({ children, title, total }) => {
     return (
         <div className={classNames(s.root)}>
             <div className={s.header}>
-                <div className={s.menu}>
-                    <a className={s.link} href="/#/">
-                        Simple
-                    </a>
-                    <a className={s.link} href="/#/redux">
-                        Redux
-                    </a>
-                </div>
+                <Menu />
                 <div>{numeral(total).format('0,0[.]00 $')}</div>
             </div>
             <h1 className={s.title}>{title}</h1>

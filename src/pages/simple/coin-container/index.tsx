@@ -34,7 +34,7 @@ export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
                 <div>Coin</div>
                 <div>$ Price</div>
                 <div>Amount</div>
-                <div>Sum</div>
+                <div>Evaluation</div>
             </div>
             <div className={s.content}>
                 {CoinList.map(({ code, price, amount }, i) => (

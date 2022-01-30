@@ -1,7 +1,7 @@
 /* eslint-disable import/no-default-export */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ReduxState } from '../../interfaces';
-import { fetchCount } from './counterAPI';
+import { fetchCount } from './api';
 
 const initialState = {
     value: 0,
