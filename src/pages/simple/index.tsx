@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { SimpleLayout } from '../../components/simple-layout';
+import { Layout } from './layout';
 import { CoinContainer } from './coin-container';
 
 export const SimplePage: React.FC = () => {
@@ -10,8 +10,8 @@ export const SimplePage: React.FC = () => {
     }, []);
 
     return (
-        <SimpleLayout title="Simple Wallet" total={total}>
+        <Layout title="Simple Wallet" total={total}>
             <CoinContainer onTotalChange={handleTotalChange} />
-        </SimpleLayout>
+        </Layout>
     );
 };
