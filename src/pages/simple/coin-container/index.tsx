@@ -1,12 +1,13 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import numeral from 'numeral';
-
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import s from './index.module.scss';
-import { CoinRow } from './coin-row';
-import { CoinList } from '../consts';
-import { Layout } from '../components/layout';
+import { CoinRow } from '../coin-row';
+import { CoinList } from '../../../consts';
 
-export const CustomPage: React.FC = () => {
+interface Props {
+    onTotalChange: (total: number) => void;
+}
+
+export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
     const [allSum, setAllSum] = useState<{ [key: string]: number }>({});
 
     const handleChange = useCallback(
@@ -22,8 +23,12 @@ export const CustomPage: React.FC = () => {
         return keys.map((key) => allSum[key]).reduce((a, b) => a + b, 0);
     }, [allSum]);
 
+    useEffect(() => {
+        onTotalChange(total);
+    }, [total]);
+
     return (
-        <Layout title="Simple Wallet" total={total}>
+        <div>
             <div className={s.header}>
                 <div>Coin</div>
                 <div>$ Price</div>
@@ -35,7 +40,6 @@ export const CustomPage: React.FC = () => {
                     <CoinRow key={i} code={code} defaultPrice={price} defaultAmount={amount} onChange={handleChange} />
                 ))}
             </div>
-            <div className={s.footer}>{`Total: ${numeral(total).format('0,0[.]00 $')}`}</div>
-        </Layout>
+        </div>
     );
 };

@@ -9,12 +9,12 @@ interface Props {
     total?: number;
 }
 
-export const Layout: React.FC<Props> = ({ children, title, total }) => {
+export const SimpleLayout: React.FC<Props> = ({ children, title, total }) => {
     return (
         <div className={classNames(s.root)}>
             <div className={s.header}>
                 <div className={s.menu}>
-                    <a className={s.link} href="/">
+                    <a className={s.link} href="/#/">
                         Simple
                     </a>
                     <a className={s.link} href="/#/redux">
