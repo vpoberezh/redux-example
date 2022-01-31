@@ -25,7 +25,7 @@ export const CoinRow: React.FC<Props> = ({ code, price = 0, amount = 1 }) => {
     dispatch(CoinActions.updateCoin({ code, amount: parseFloat(e.currentTarget.value) }));
   }, []);
 
-  const sum = useMemo(() => {
+  const evaluation = useMemo(() => {
     return price * amount;
   }, [price, amount]);
 
@@ -38,7 +38,7 @@ export const CoinRow: React.FC<Props> = ({ code, price = 0, amount = 1 }) => {
       <div className={s.item}>
         <input value={amount} onChange={handleAmountChange} type="number" />
       </div>
-      <div className={s.item}>{numeral(sum).format('0,0[.]00 $')}</div>
+      <div className={s.item}>{numeral(evaluation).format('0,0[.]00 $')}</div>
     </div>
   );
 };
