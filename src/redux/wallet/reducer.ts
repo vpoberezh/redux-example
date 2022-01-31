@@ -26,10 +26,8 @@ export const walletReducer = createReducer(initialState, (builder) => {
       if (typeof amount !== 'undefined') {
         coin.amount = amount;
       }
-
       state.total = state.coins.map((x) => x.amount * x.price).reduce((a, b) => a + b, 0);
     }
-
     return state;
   });
 });
