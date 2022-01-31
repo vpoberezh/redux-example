@@ -4,42 +4,47 @@ import classNames from 'classnames';
 import numeral from 'numeral';
 
 interface Props {
-    code: string;
-    defaultPrice?: number;
-    defaultAmount?: number;
-    onChange: (code: string, evaluation: number) => void;
+  code: string;
+  defaultPrice?: number;
+  defaultAmount?: number;
+  onChange: (code: string, evaluation: number) => void;
 }
 
-export const CoinRow: React.FC<Props> = ({ code, defaultPrice = 0, defaultAmount = 1, onChange }) => {
-    const [price, setPrice] = useState<string>(defaultPrice.toString());
-    const [amount, setAmount] = useState<string>(defaultAmount.toString());
+export const CoinRow: React.FC<Props> = ({
+  code,
+  defaultPrice = 0,
+  defaultAmount = 1,
+  onChange,
+}) => {
+  const [price, setPrice] = useState<string>(defaultPrice.toString());
+  const [amount, setAmount] = useState<string>(defaultAmount.toString());
 
-    const handlePriceChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setPrice(e.currentTarget.value);
-    }, []);
+  const handlePriceChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(e.currentTarget.value);
+  }, []);
 
-    const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.currentTarget.value);
-    }, []);
+  const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(e.currentTarget.value);
+  }, []);
 
-    const evaluation = useMemo(() => {
-        return parseFloat(price) * parseInt(amount);
-    }, [price, amount]);
+  const evaluation = useMemo(() => {
+    return parseFloat(price) * parseInt(amount);
+  }, [price, amount]);
 
-    useEffect(() => {
-        onChange(code, evaluation);
-    }, [evaluation]);
+  useEffect(() => {
+    onChange(code, evaluation);
+  }, [evaluation]);
 
-    return (
-        <div className={classNames(s.root)}>
-            <div className={classNames(s.item, s.code)}>{code}</div>
-            <div className={s.item}>
-                <input value={price} onChange={handlePriceChange} type="number" />
-            </div>
-            <div className={s.item}>
-                <input value={amount} onChange={handleAmountChange} type="number" />
-            </div>
-            <div className={s.item}>{numeral(evaluation).format('0,0[.]00 $')}</div>
-        </div>
-    );
+  return (
+    <div className={classNames(s.root)}>
+      <div className={classNames(s.item, s.code)}>{code}</div>
+      <div className={s.item}>
+        <input value={price} onChange={handlePriceChange} type="number" />
+      </div>
+      <div className={s.item}>
+        <input value={amount} onChange={handleAmountChange} type="number" />
+      </div>
+      <div className={s.item}>{numeral(evaluation).format('0,0[.]00 $')}</div>
+    </div>
+  );
 };

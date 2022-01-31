@@ -3,7 +3,7 @@ import { walletReducer } from './wallet/reducer';
 import { ReduxState } from '../interfaces';
 
 export const store = configureStore<ReduxState>({
-    reducer: {
-        wallet: walletReducer,
-    },
+  reducer: {
+    wallet: walletReducer,
+  },
 });

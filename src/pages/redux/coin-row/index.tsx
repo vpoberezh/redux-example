@@ -6,39 +6,39 @@ import { useDispatch } from 'react-redux';
 import { CoinActions } from '../../../redux/wallet/reducer';
 
 interface Props {
-    code: string;
-    price: number;
-    amount: number;
+  code: string;
+  price: number;
+  amount: number;
 }
 
 export const CoinRow: React.FC<Props> = ({ code, price = 0, amount = 1 }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handlePriceChange = useCallback(
-        (e: React.ChangeEvent<HTMLInputElement>) => {
-            dispatch(CoinActions.updateCoin({ code, price: parseFloat(e.currentTarget.value) }));
-        },
-        [code]
-    );
+  const handlePriceChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(CoinActions.updateCoin({ code, price: parseFloat(e.currentTarget.value) }));
+    },
+    [code]
+  );
 
-    const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(CoinActions.updateCoin({ code, amount: parseFloat(e.currentTarget.value) }));
-    }, []);
+  const handleAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(CoinActions.updateCoin({ code, amount: parseFloat(e.currentTarget.value) }));
+  }, []);
 
-    const sum = useMemo(() => {
-        return price * amount;
-    }, [price, amount]);
+  const sum = useMemo(() => {
+    return price * amount;
+  }, [price, amount]);
 
-    return (
-        <div className={classNames(s.root)}>
-            <div className={classNames(s.item, s.code)}>{code}</div>
-            <div className={s.item}>
-                <input value={price} onChange={handlePriceChange} type="number" />
-            </div>
-            <div className={s.item}>
-                <input value={amount} onChange={handleAmountChange} type="number" />
-            </div>
-            <div className={s.item}>{numeral(sum).format('0,0[.]00 $')}</div>
-        </div>
-    );
+  return (
+    <div className={classNames(s.root)}>
+      <div className={classNames(s.item, s.code)}>{code}</div>
+      <div className={s.item}>
+        <input value={price} onChange={handlePriceChange} type="number" />
+      </div>
+      <div className={s.item}>
+        <input value={amount} onChange={handleAmountChange} type="number" />
+      </div>
+      <div className={s.item}>{numeral(sum).format('0,0[.]00 $')}</div>
+    </div>
+  );
 };

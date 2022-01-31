@@ -1,23 +1,23 @@
 .content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    color: rgb(187, 187, 187);
-    font-weight: bold;
-    text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  color: rgb(187, 187, 187);
+  font-weight: bold;
+  text-transform: uppercase;
 
-    >* {
-        flex:1;
-        padding: 5px 10px;
-    }
+  >* {
+    flex:1;
+    padding: 5px 10px;
+  }
 }
 
 .footer {
-    text-align: right;
-    padding: 10px;
-    font-size: 24px;
+  text-align: right;
+  padding: 10px;
+  font-size: 24px;
 }

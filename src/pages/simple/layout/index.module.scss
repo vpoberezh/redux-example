@@ -1,18 +1,18 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .title {
-    color: #666;
-    padding: 10px;
+  color: #666;
+  padding: 10px;
 }
 
 .content {
-    flex: 1;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
