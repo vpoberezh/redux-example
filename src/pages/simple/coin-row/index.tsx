@@ -7,7 +7,7 @@ interface Props {
     code: string;
     defaultPrice?: number;
     defaultAmount?: number;
-    onChange: (code: string, sum: number) => void;
+    onChange: (code: string, evaluation: number) => void;
 }
 
 export const CoinRow: React.FC<Props> = ({ code, defaultPrice = 0, defaultAmount = 1, onChange }) => {
@@ -22,13 +22,13 @@ export const CoinRow: React.FC<Props> = ({ code, defaultPrice = 0, defaultAmount
         setAmount(e.currentTarget.value);
     }, []);
 
-    const sum = useMemo(() => {
+    const evaluation = useMemo(() => {
         return parseFloat(price) * parseInt(amount);
     }, [price, amount]);
 
     useEffect(() => {
-        onChange(code, sum);
-    }, [sum]);
+        onChange(code, evaluation);
+    }, [evaluation]);
 
     return (
         <div className={classNames(s.root)}>
@@ -39,7 +39,7 @@ export const CoinRow: React.FC<Props> = ({ code, defaultPrice = 0, defaultAmount
             <div className={s.item}>
                 <input value={amount} onChange={handleAmountChange} type="number" />
             </div>
-            <div className={s.item}>{numeral(sum).format('0,0[.]00 $')}</div>
+            <div className={s.item}>{numeral(evaluation).format('0,0[.]00 $')}</div>
         </div>
     );
 };

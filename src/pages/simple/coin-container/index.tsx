@@ -12,8 +12,8 @@ export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
     const [allSum, setAllSum] = useState<{ [key: string]: number }>({});
 
     const handleChange = useCallback(
-        (code: string, sum) => {
-            allSum[code] = sum;
+        (code: string, evaluation: number) => {
+            allSum[code] = evaluation;
             setAllSum({ ...allSum });
         },
         [allSum]
