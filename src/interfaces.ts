@@ -1,6 +1,4 @@
 export interface WalletReduxState {
-  value: number;
-  status: string;
   coins: CoinInfo[];
   total: number;
 }

@@ -4,8 +4,6 @@ import { CoinList } from '../../consts';
 import { UpadateCoinParams, WalletReduxState } from '../../interfaces';
 
 const initialState: WalletReduxState = {
-  value: 0,
-  status: 'idle',
   coins: [...CoinList],
   total: CoinList.map((x) => x.amount * x.price).reduce((a, b) => a + b, 0),
 };
