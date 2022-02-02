@@ -9,20 +9,20 @@ interface Props {
 }
 
 export const CoinContainer: React.FC<Props> = ({ onTotalChange }) => {
-  const [allSum, setAllSum] = useState<{ [key: string]: number }>({});
+  const [allEvaluation, setAllEvaluation] = useState<{ [key: string]: number }>({});
 
   const handleChange = useCallback(
     (code: string, evaluation: number) => {
-      allSum[code] = evaluation;
-      setAllSum({ ...allSum });
+      allEvaluation[code] = evaluation;
+      setAllEvaluation({ ...allEvaluation });
     },
-    [allSum]
+    [allEvaluation]
   );
 
   const total = useMemo(() => {
-    const keys = Object.keys(allSum);
-    return keys.map((key) => allSum[key]).reduce((a, b) => a + b, 0);
-  }, [allSum]);
+    const keys = Object.keys(allEvaluation);
+    return keys.map((key) => allEvaluation[key]).reduce((a, b) => a + b, 0);
+  }, [allEvaluation]);
 
   useEffect(() => {
     onTotalChange(total);
